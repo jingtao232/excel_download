@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel下载</title>
+  <link rel="stylesheet" th:href="@{css/table.css}">
+  <script th:src="@{js/jquery-3.4.1.min.js}"></script>
+  <script th:src="@{js/vue-2.6.12.js}"></script>
+</head>
+
+<body>
+<div id="app">
+  <div v-if="allItems.length">
+    <table>
+      <thead>
+      <tr>
+        <th></th>
+        <th>name</th>
+        <th>columnDefine</th>
+        <th>sql</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(item, index) in allItems">
+        <td>{{ index + 1 }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.columnDefine }}</td>
+        <td>{{ item.sql }}</td>
+        <td>
+          <button v-on:click="download(item)">下载</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <h2 v-else>列表为空</h2>
+</div>
+</body>
+
+<script th:src="@{js/vue-service.js}"></script>
+</html>
